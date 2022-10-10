@@ -1,0 +1,59 @@
+<div id="background">
+    
+    
+
+    <form id="formBackground" [formGroup]="formularioLogin">
+
+        <h1>Iniciar sesión</h1>
+        <span *ngIf="loginIncorrecto">El usuario / contraseña es incorrecto</span>
+        <p>
+            <mat-form-field appearance="fill" >
+              <mat-label>Correo electronico</mat-label>
+
+              <input  autocomplete="off" 
+                      matInput 
+                      formControlName="email"
+                      placeholder="Ingrese su correo">
+
+              <mat-icon matSuffix>markunread_mailbox</mat-icon>
+            </mat-form-field>
+        </p>
+
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input  type="password" 
+                    formControlName="password"
+                    autocomplete="on" 
+                    matInput 
+                    [type]="hide ? 'password' : 'text'">
+
+            <button class="eyeButton" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button mat-raised-button 
+                  class="sendButton" 
+                  color="accent"
+                  [disabled]="!formularioLogin.valid"
+                  (click)="sendData()">Enviar</button>
+
+          
+          <div class="socialNetCont">
+            <asl-google-signin-button *ngIf="!user"></asl-google-signin-button>
+            <button class="faceButton" (click)="signInWithFB()"></button>
+            <button class="githubButton"></button>
+            <button class="twitterButton"></button>
+          </div>
+          <a routerLink="/auth/register" >¿Aun no tienes una cuenta? Clíck aquí</a>
+          <a routerLink="/auth/hablameloComentameloConversameloComunicameloDialogameloManifestameloCharlameloAclarameloDecimeloHacemeloSaberTodoBienTodoBelloTodoVacanoTodoTitinoTodoEleganteSisaPaLaqueSeaXd">¿Olvidaste tu contraseña? Click aquì</a>
+        </form>
+
+        <div *ngIf="user" class="googleData">
+          <img class="userImg" src="{{ user.photoUrl }}">
+            <h4 class="userInfo">{{ user.name }}</h4>
+            <p  class="userInfo">{{ user.email }}</p>
+        </div>
+</div>

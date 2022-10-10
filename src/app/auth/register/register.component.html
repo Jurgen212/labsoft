@@ -1,0 +1,51 @@
+
+<div id="background" >
+    
+    
+
+    <form id="formBackground" [formGroup]="formularioRegistro">
+
+      <h1>Crear cuenta</h1>
+
+      <span *ngIf="lonPasswordIncorrecta">La contraseña debe tener minimo 6 caracteres</span>
+      <span *ngIf="passwordsNoCoinciden">Las contraseñas no coinciden</span>
+      <span *ngIf="ErrorcamposObligatorios">Todos los campos son obligatorios</span>
+      
+
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre de usuario</mat-label>
+              <input formControlName="name"  autocomplete="off" matInput placeholder="Ingrese un nombre de usuario">
+              <mat-icon matSuffix>supervisor_account</mat-icon>
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Correo electronico</mat-label>
+              <input formControlName="mail" autocomplete="off" matInput placeholder="Ingrese su correo">
+              <mat-icon matSuffix>markunread_mailbox</mat-icon>
+            </mat-form-field>
+        </p>
+
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Ingresa una contraseña</mat-label>
+            <input  formControlName="password" type="password" autocomplete="on" matInput [type]="hide ? 'password' : 'text'">
+            <mat-icon mat-icon-button matSuffix >visibility_off</mat-icon>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Repite la contraseña</mat-label>
+            <input  formControlName="password2" type="password" autocomplete="on" matInput [type]="hide ? 'password' : 'text'">
+            <mat-icon mat-icon-button matSuffix >visibility_off</mat-icon>
+          </mat-form-field>
+
+
+          <button (click)="sendData()" mat-raised-button class="sendButton" color="accent">Enviar</button>
+
+          <a routerLink="/auth/login" >¿Ya tienes una cuenta? Clíck aquí</a>
+        </form>
+</div>

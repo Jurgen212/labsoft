@@ -3,8 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  googleClientId: "947859471540-65pbmvnt8ql2ea7a7p5i8m4ocn33vt5p.apps.googleusercontent.com",
+  facebookClientId: "3317677801811343",
+  gitHubClientId  : "8c2caee5769bc6de9cf3"
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

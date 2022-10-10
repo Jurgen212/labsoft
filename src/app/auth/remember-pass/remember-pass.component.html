@@ -1,0 +1,30 @@
+<div id="background">
+    <form class="textBackground" [formGroup]="formularioRecuperar" >
+
+        <h1  class="texto">Recuperar contraseña</h1>
+        <h3 class="texto">¿Olvido su contraseña? por favor escriba su correo a continuacion</h3>
+        <span class="textoInfo">
+            Si olvido su contraseña no se olvide de hablarmeloComentarmeloConversameloComunicameloDialogameloManifestarmelo
+        </span>
+        
+        <span class="warning" *ngIf="formInvalid">Ingresar un correo es obligatorio</span>
+        <p>
+            <mat-form-field appearance="fill" >
+              <mat-label>Correo electronico</mat-label>
+
+              <input  autocomplete="off" 
+                      matInput 
+                      formControlName="mail"
+                      placeholder="Ingrese su correo" type="email" name="email">
+    
+              <mat-icon matSuffix>markunread_mailbox</mat-icon>
+            </mat-form-field>
+        </p>
+
+
+        <button (click)="sendData()" mat-raised-button class="sendButton" color="accent">Enviar correo</button>
+        <a routerLink="/auth/login" >Volver a iniciar sesion</a>
+    </form>
+
+    
+</div>
