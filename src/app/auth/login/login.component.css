@@ -95,7 +95,7 @@ asl-google-signin-button{
 
 
 
-.faceButton, .githubButton{
+.faceButton, .githubButton, .googleButton{
     width   : 30px;
     height  : 30px;
     border  : none;
@@ -134,6 +134,12 @@ asl-google-signin-button{
 
     margin: 16px;
     cursor: pointer;
+}
+
+
+.googleButton{
+    background-image: url("src/assets/googleIcon.png");
+    border-radius: 20px;
 }
 
 .socialNetCont{

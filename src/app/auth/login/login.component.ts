@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+
 
 @Component({
   selector: 'app-login',
@@ -11,25 +12,14 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUs
 })
 export class LoginComponent implements OnInit {
 
-
-  user!: SocialUser;
-  loggedIn!: boolean;
-
-
-
-  hide            : boolean = true  ;
+  hide: boolean = false;
   loginIncorrecto : boolean = false ;
 
   
-  constructor( private fb: FormBuilder, private authService: SocialAuthService ) { }
+  constructor( private fb: FormBuilder, private authServ: AuthService  ) { }
 
   ngOnInit(): void {
 
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log( this.user )
-    });
   };
 
 
@@ -45,27 +35,24 @@ export class LoginComponent implements OnInit {
 
       this.loginIncorrecto = true;
     }
-  }
-
-
-  signInWithGoogle(): void {
-    this.authService.signOut();
-    this.authService.signIn( GoogleLoginProvider.PROVIDER_ID );
-  }
-
-  signInWithFB(): void {
-    this.authService.signOut();
-    this.authService.signIn( FacebookLoginProvider.PROVIDER_ID );
-  }
-
-  signOut(): void {
     
-    this.authService.signOut();
   }
 
 
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  facebookAuth(){
+    this.authServ.facebookAuth();
   }
 
+  googleAuth(){
+    this.authServ.googleAuth();
+  }
+
+
+  githubAuth(){
+    this.authServ.githubAuth();
+  }
+
+  twitterAuth(){
+    this.authServ.twitterAuth();
+  }
 }

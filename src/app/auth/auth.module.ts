@@ -11,9 +11,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { environment } from '../../environments/environment';
 import { RememberPassComponent } from './remember-pass/remember-pass.component';
+
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 
@@ -31,29 +33,11 @@ import { RememberPassComponent } from './remember-pass/remember-pass.component';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    SocialLoginModule
+
+
+    AngularFireAuthModule
   ], 
-  providers: [{
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            environment.googleClientId
-          )
-        },
-        {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider(  environment.facebookClientId  )
-        }
-      ],
-      onError: (err) => {
-        console.error(err);
-      }
-    } as SocialAuthServiceConfig,
-  }]
+  providers: [
+  ],
 })
 export class AuthModule { }
