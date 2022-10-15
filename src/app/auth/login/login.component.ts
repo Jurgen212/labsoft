@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { SesionUserService } from '../../services/sesion-user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +18,10 @@ export class LoginComponent implements OnInit {
   loginIncorrecto : boolean = false ;
 
   
-  constructor( private fb: FormBuilder, private authServ: AuthService  ) { }
+  constructor(  private fb        : FormBuilder, 
+                private authServ  : AuthService,
+                private localServ : SesionUserService,
+                private router    : Router             ) { }
 
   ngOnInit(): void {
 
@@ -35,8 +40,23 @@ export class LoginComponent implements OnInit {
 
       this.loginIncorrecto = true;
     }
-    
+    else{
+
+
+      const mail    : string = this.formularioLogin.value.email   ;
+      const password: string = this.formularioLogin.value.password;
+
+
+      this.authServ.login({ mail, password }).
+      then( data => this.loginExitoso( data )).
+      catch( err => console.log( err ))
+    }
   }
+
+  loginExitoso( data: any ){
+    this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.email!, data.user?.uid! );
+    this.router.navigateByUrl("/user/info");
+  };
 
 
   facebookAuth(){

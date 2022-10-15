@@ -1,0 +1,71 @@
+#background{
+    height  : 100%;
+    width   : 100%;
+    display : flex;
+
+    align-items         : center;
+    justify-content     : center;
+
+    background-image        : url("src/assets/loginBackground.jpg");
+
+    background-repeat       : no-repeat ;
+    background-size         : cover     ;
+    background-position     : center    ;
+    background-position-x   : center    ;
+    background-position-y   : center    ;
+}
+
+
+#cardBackground{
+
+    height  :  200px;
+    width   :  800px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    background-color: #c49c80;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+
+#imgSection{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dataSection{
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: left;
+}
+
+
+img{
+
+    border-radius: 100px;
+    width   : 100px;
+    height  : 100px;
+    opacity : 1;
+}
+
+
+.mailText{
+    font-size: 25px;
+}
+
+.uidText{
+    font-size: 20px;
+}

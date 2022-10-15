@@ -3,10 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule } from '@angular/fire/compat';
+
 import { environment } from '../environments/environment.prod';
 
+
+import { initializeApp }            from 'firebase/app';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
+import { AngularFireModule }        from '@angular/fire/compat';
+import { provideFirebaseApp }       from '@angular/fire/app';
+import { provideAuth, getAuth }     from '@angular/fire/auth';
+
+
+
+import { NoimagePipe } from './pipes/noimage.pipe'
 
 @NgModule({
   declarations: [
@@ -16,7 +25,12 @@ import { environment } from '../environments/environment.prod';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp( environment.firebaseConfig )
+    AngularFireModule.initializeApp( environment.firebaseConfig ),
+    provideFirebaseApp( () => initializeApp( environment.firebaseConfig ) ),
+    provideAuth( () => getAuth() )
+  ],
+  exports: [
+
   ],
   providers: [],
   

@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, TwitterAuthProvider} from '@firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, TwitterAuthProvider, signInWithEmailAndPassword} from '@firebase/auth';
 
 import { environment } from '../../environments/environment.prod';
 
-
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { SesionUserService } from './sesion-user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor( private auth: AngularFireAuth, private router: Router ) { }
+  constructor( private auth     : AngularFireAuth   , 
+               private userAuth : Auth              ,
+               private localServ: SesionUserService ,
+               private router   : Router            ) { }
 
+  //Register user
 
-  //Sign in with google
+    register( {  mail, password }: any ){
+
+      return createUserWithEmailAndPassword( this.userAuth, mail, password );
+    }
+
+    login({ mail, password}: any ){
+      
+
+      return signInWithEmailAndPassword( this.userAuth, mail, password );
+    }
+
+  //Sign in with social networks
 
 
   googleAuth(){
@@ -38,10 +54,7 @@ export class AuthService {
 
   authLogin( provider: any ){
     return this.auth.signInWithPopup( provider )
-    .then( data => {
-
-      console.log( "Succes login:  " + "\n User: " + JSON.stringify( data.user) + "\n\n\n Credentials: " + JSON.stringify( data.credential ) + "\n\n\n Additional: " + JSON.stringify( data.additionalUserInfo ) );
-    })
+    .then( data => this.loginExitoso( data ))
     .catch( error => {
 
       console.log("Error en auth.service: " + error )
@@ -56,6 +69,17 @@ export class AuthService {
   getStateUser(){
 
     return this.auth.authState;
+  }
+
+
+  loginExitoso( data: any ){
+
+    console.log( "Succes login:  " + "\n User: " + JSON.stringify( data.user) );
+
+      if( data.user?.email ){
+        this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.email!, data.user?.uid! );
+      } else this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.displayName! , data.user?.uid! );
+       this.router.navigateByUrl("/user/info");
   }
 
 }
