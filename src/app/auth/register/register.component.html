@@ -43,6 +43,13 @@
             <mat-icon mat-icon-button matSuffix >visibility_off</mat-icon>
           </mat-form-field>
 
+          
+          <div class="socialNetCont">
+            <button (click)="googleAuth()" class="googleButton"></button>
+            <button (click)="facebookAuth()" class="faceButton"></button>
+            <button (click)="githubAuth()" class="githubButton"></button>
+            <button (click)="twitterAuth()" class="twitterButton"></button>
+          </div>  
 
           <button (click)="sendData()" mat-raised-button class="sendButton" color="accent">Enviar</button>
 

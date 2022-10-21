@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, TwitterAuthProvider, signInWithEmailAndPassword} from '@firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, TwitterAuthProvider, signInWithEmailAndPassword, getAuth} from '@firebase/auth';
 
 import { environment } from '../../environments/environment.prod';
 
@@ -54,7 +54,10 @@ export class AuthService {
 
   authLogin( provider: any ){
     return this.auth.signInWithPopup( provider )
-    .then( data => this.loginExitoso( data ))
+    .then( data => {
+
+      this.loginExitoso( data );
+    })
     .catch( error => {
 
       console.log("Error en auth.service: " + error )
@@ -77,9 +80,9 @@ export class AuthService {
     console.log( "Succes login:  " + "\n User: " + JSON.stringify( data.user) );
 
       if( data.user?.email ){
+        
         this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.email!, data.user?.uid! );
       } else this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.displayName! , data.user?.uid! );
        this.router.navigateByUrl("/user/info");
   }
-
 }

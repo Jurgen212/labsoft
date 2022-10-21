@@ -5,8 +5,6 @@ import { AuthService } from '../../services/auth.service';
 import { SesionUserService } from '../../services/sesion-user.service';
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +15,8 @@ export class LoginComponent implements OnInit {
   hide: boolean = false;
   loginIncorrecto : boolean = false ;
 
+
+  
   
   constructor(  private fb        : FormBuilder, 
                 private authServ  : AuthService,
@@ -24,9 +24,7 @@ export class LoginComponent implements OnInit {
                 private router    : Router             ) { }
 
   ngOnInit(): void {
-
   };
-
 
   formularioLogin: FormGroup = this.fb.group({
     email   : [ ,Validators.required ],

@@ -66,3 +66,63 @@ span{
     margin-bottom: 5px;
     
 }
+
+
+.faceButton, .githubButton, .googleButton{
+    width   : 30px;
+    height  : 30px;
+    border  : none;
+
+
+    background-color: white;
+    
+    background-size: contain;
+
+    margin: 16px;
+    cursor: pointer;
+}
+
+.githubButton{
+    background-image: url("src/assets/github.png");
+    border-radius: 20px;
+    opacity: .8;
+}
+
+.faceButton{
+    background-image: url("src/assets/facebook.png");
+    border-radius: 5px;
+}
+
+.twitterButton{
+    background-image: url("src/assets/twitter.png");
+    border-radius: 20px;
+    width   : 35px;
+    height  : 35px;
+    border  : none;
+
+
+    background-color: white;
+    
+    background-size: contain;
+
+    margin: 16px;
+    cursor: pointer;
+}
+
+
+.googleButton{
+    background-image: url("src/assets/googleIcon.png");
+    border-radius: 20px;
+}
+
+.socialNetCont{
+    width: 100%;
+    height: 60px;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

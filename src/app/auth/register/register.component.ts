@@ -57,6 +57,22 @@ export class RegisterComponent implements OnInit {
 
 
 
+  facebookAuth(){
+    this.authServ.facebookAuth();
+  }
+
+  googleAuth(){
+    this.authServ.googleAuth();
+  }
+
+
+  githubAuth(){
+    this.authServ.githubAuth();
+  }
+
+  twitterAuth(){
+    this.authServ.twitterAuth();
+  }
 
 
   //Validaciones del registro

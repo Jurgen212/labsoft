@@ -14,6 +14,8 @@ import { provideFirebaseApp }       from '@angular/fire/app';
 import { provideAuth, getAuth }     from '@angular/fire/auth';
 
 
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 import { NoimagePipe } from './pipes/noimage.pipe'
 
@@ -25,6 +27,7 @@ import { NoimagePipe } from './pipes/noimage.pipe'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSidenavModule,
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     provideFirebaseApp( () => initializeApp( environment.firebaseConfig ) ),
     provideAuth( () => getAuth() )

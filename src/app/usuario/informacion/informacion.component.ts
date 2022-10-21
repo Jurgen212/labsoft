@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SesionUserService } from '../../services/sesion-user.service';
 
 @Component({
   selector: 'app-informacion',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformacionComponent implements OnInit {
 
-  constructor() { }
+  constructor( private sessionServ: SesionUserService ) { }
 
   imageUrl: string = null!;
   userMail: string = ""   ;
@@ -17,7 +18,9 @@ export class InformacionComponent implements OnInit {
     this.obtenerDataLocalStorage();
   }
 
-
+  cerrarSesion(){
+    this.sessionServ.eliminarInstanciaLocalHost();
+  }
 
   obtenerDataLocalStorage(){
 
