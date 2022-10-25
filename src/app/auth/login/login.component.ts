@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
     }
     else{
 
-
       const mail    : string = this.formularioLogin.value.email   ;
       const password: string = this.formularioLogin.value.password;
 

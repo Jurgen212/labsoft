@@ -27,7 +27,6 @@ export class AuthService {
 
     login({ mail, password}: any ){
       
-
       return signInWithEmailAndPassword( this.userAuth, mail, password );
     }
 
@@ -85,4 +84,20 @@ export class AuthService {
       } else this.localServ.instanciaEnLocalHost( data.user?.photoURL!, data.user?.displayName! , data.user?.uid! );
        this.router.navigateByUrl("/user/info");
   }
+
+
+  recordarContraseña( email : string ){
+
+    this.auth.sendPasswordResetEmail( email )
+    .then( ( data ) => {
+      console.log( data );
+      this.router.navigateByUrl("/auth/");
+    }, err =>{
+
+      console.log( err );
+    })
+
+  }
+
+
 }

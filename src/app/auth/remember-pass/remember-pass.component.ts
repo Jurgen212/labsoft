@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-remember-pass',
@@ -10,9 +11,9 @@ export class RememberPassComponent implements OnInit {
 
 
   formInvalid: boolean = false;
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder, private authServ: AuthService  ) { }
 
-  ngOnInit(): void {
+  ngOnInit( ): void {
     
   }
 
@@ -27,7 +28,7 @@ export class RememberPassComponent implements OnInit {
     if( this.formularioRecuperar.valid ){
 
       this.formInvalid = false;
-      console.log( this.formularioRecuperar.value.mail )
+      this.authServ.recordarContraseña( this.formularioRecuperar.value.mail );
     }
     else{
       this.formInvalid = true;
